@@ -37,3 +37,31 @@ def validate_third_answer(inputarray):
     validated_array = [inputarray[0]] + [i for i in inputarray[1:] if 1 <= int(i[5]) <= 10]
     
     return validated_array
+
+
+#Ticket 6: Output the cleansed result data to a new file called clean_results.csv
+def get_output_file(inputarray):
+    
+    with open("clean_results.csv","w") as f:
+        for line in inputarray:
+            f.write(','.join(line) + '\n') 
+    
+    return f
+
+
+#Ticket 7: Read in the clean_results.csv file and output the results to the command line, row by row.
+#Stretch: The printed output will be formatted with fixed length strings. 
+def print_final_output(final_output):
+
+    # item_lengths = []
+    # for line in final_output:
+    #     for i in range(1,6):
+    #         item_lengths.append(len(line[i])) 
+    # max_length = max(item_lengths)
+    # using f strings
+    # for line in final_output:
+    #     for i in range(1,6):
+    #         print(','.join(f"{line[i]:<max_length}"))
+
+    for line in final_output:
+        print(line)

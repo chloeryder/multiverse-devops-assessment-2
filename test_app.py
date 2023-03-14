@@ -1,4 +1,4 @@
-from extract import get_input, get_cleaned_input
+from extract import get_input, get_cleaned_input, get_formatted_input
 
 #Ticket 1
 def test_input_is_list():
@@ -42,3 +42,17 @@ def test_duplicates_removed():
     for i in cleaned_input:
         if i[0] == 6:
             assert i[5] == expected_value_of_answer_3_for_user_id_6     
+
+#Ticket 4
+def test_format():
+    filename = 'results.csv'
+    initials_list = []
+    output = get_formatted_input(get_cleaned_input(get_input(filename)))
+
+    #Get list of initials for each entry in name fields 
+    for row in output[1:]:
+        for i in [1,2]:
+            initials_list.append(row[i][0])
+    
+    #Check that all initials in list are upper-case
+    assert all([initial.isupper() for initial in initials_list])

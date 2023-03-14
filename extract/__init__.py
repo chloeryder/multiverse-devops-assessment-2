@@ -30,3 +30,10 @@ def get_formatted_input(inputarray):
     
     return format_array
 
+
+#Ticket 5: Validate responses to answer_3, accept only answers within range of 1 to 10
+def validate_third_answer(inputarray):
+    
+    validated_array = [inputarray[0]] + [i for i in inputarray[1:] if 1 <= int(i[5]) <= 10]
+    
+    return validated_array

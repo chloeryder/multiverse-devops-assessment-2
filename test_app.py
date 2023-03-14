@@ -1,4 +1,4 @@
-from extract import get_input, get_cleaned_input, get_formatted_input
+from extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer
 
 #Ticket 1
 def test_input_is_list():
@@ -56,3 +56,12 @@ def test_format():
     
     #Check that all initials in list are upper-case
     assert all([initial.isupper() for initial in initials_list])
+
+#Ticket 5
+def test_validate_third_answer():
+    filename = 'results.csv'
+    output = validate_third_answer(get_formatted_input(get_cleaned_input(get_input(filename))))
+   
+    #Check that all answer-3 values are between 1 and 10
+    for row in output[1:]:
+        assert 1 <= int(row[5]) <= 10

@@ -43,25 +43,18 @@ def validate_third_answer(inputarray):
 def get_output_file(inputarray):
     
     with open("clean_results.csv","w") as f:
-        for line in inputarray:
+        for line in inputarray[:-1]:                #Don't add new line character after final row. 
             f.write(','.join(line) + '\n') 
+        f.write(','.join(inputarray[-1]))           #Write final row without line break. 
     
     return f
 
 
 #Ticket 7: Read in the clean_results.csv file and output the results to the command line, row by row.
 #Stretch: The printed output will be formatted with fixed length strings. 
+
+#define function to print the final output array to command line
 def print_final_output(final_output):
-
-    # item_lengths = []
-    # for line in final_output:
-    #     for i in range(1,6):
-    #         item_lengths.append(len(line[i])) 
-    # max_length = max(item_lengths)
-    # using f strings
-    # for line in final_output:
-    #     for i in range(1,6):
-    #         print(','.join(f"{line[i]:<max_length}"))
-
+    
     for line in final_output:
         print(line)

@@ -1,4 +1,4 @@
-from extract import get_input
+from extract import get_input, get_cleaned_input
 
 #Ticket 1
 def test_input_is_list():
@@ -23,3 +23,22 @@ def test_input_is_correct():
 
     assert output_first_line == expected_first_line
     assert output_row_count == expected_row_count
+
+#Ticket 2 & 3
+def test_duplicates_removed():
+  
+    filename = 'results.csv'  
+    initial_input = get_input(filename)
+    cleaned_input = get_cleaned_input(initial_input)
+    expected_row_count = 20
+    expected_value_of_answer_3_for_user_id_6 = 6
+
+    cleaned_input_row_count = len(cleaned_input[1:])
+
+    #Check number of rows after duplicates and empty lines have been removed             
+    assert cleaned_input_row_count == expected_row_count  
+    
+    #Check example to assert that first occurrence of any duplicated records is retained
+    for i in cleaned_input:
+        if i[0] == 6:
+            assert i[5] == expected_value_of_answer_3_for_user_id_6     

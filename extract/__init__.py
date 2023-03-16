@@ -22,3 +22,11 @@ def get_cleaned_input(inputarray):
     
     return output_array
 
+
+#Ticket 4: Capitalise user name fields
+def get_formatted_input(inputarray):
+    
+    format_array = [inputarray[0]] + [[i[j][0].upper() + i[j][1:] if j in [1,2] else i[j] for j in range(len(i))] for i in inputarray[1:]]
+    
+    return format_array
+

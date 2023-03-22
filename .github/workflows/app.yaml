@@ -27,7 +27,7 @@ jobs:
 
     - name: Run Pytest
       run: pytest
-      working-directory: survey-app
+      working-directory: survey_app
     
   terraform:
     name: Run Terraform

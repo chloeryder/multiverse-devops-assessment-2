@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       s3_bucket:
-      description: 'mvws9-chloe20230321174433047800000003'  #name of S3 bucket created through IaC
-      required: true
-      type: string
+        description: 'mvws9-chloe20230321174433047800000003'  #name of S3 bucket created through IaC
+        required: true
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest

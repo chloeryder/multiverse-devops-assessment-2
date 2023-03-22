@@ -62,7 +62,7 @@ resource "aws_vpc_endpoint_route_table_association" "this" {
 }
 
 resource "aws_s3_bucket" "this" {
-    bucket_prefix = "mvws9-chloe"
+    bucket_prefix = "s3-chloe"
     force_destroy = true
     tags = {
         Name = "multiverse"

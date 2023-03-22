@@ -12,9 +12,7 @@ def main():
     
     get_output_file(validated_list) 
     
-    final_results = get_input('clean_results.csv')
-    print_final_output(final_results)
-   
+      
 
 if __name__ == '__main__':
     print(main())

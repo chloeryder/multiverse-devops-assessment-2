@@ -26,7 +26,7 @@ jobs:
       run: pip install pytest pytest-cov
 
     - name: Run Pytest
-      run: pytest
+      run: -m pytest
       working-directory: survey_app
     
   terraform:

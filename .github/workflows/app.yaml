@@ -60,7 +60,7 @@ jobs:
     - name: Apply changes
       run: terraform apply -auto-approve
       if: |
-        github.ref_name == 'pytest_changes' &&      
+        github.ref_name == 'main' &&      
         github.event_name != 'pull_request'
 
     - name: Commit the Terraform state file

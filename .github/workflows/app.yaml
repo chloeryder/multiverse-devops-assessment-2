@@ -26,8 +26,8 @@ jobs:
       run: pip install pytest pytest-cov
 
     - name: Run Pytest
-      run: pytest
-      working-directory: survey-app
+      run: python -m pytest
+      working-directory: .
     
   terraform:
     name: Run Terraform
@@ -60,7 +60,7 @@ jobs:
     - name: Apply changes
       run: terraform apply -auto-approve
       if: |
-        github.ref_name == 'main' &&
+        github.ref_name == 'pytest_changes' &&      
         github.event_name != 'pull_request'
 
     - name: Commit the Terraform state file

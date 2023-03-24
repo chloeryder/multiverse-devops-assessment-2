@@ -1,9 +1,9 @@
-from extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer
+from survey_app.extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer
 
 #Ticket 1
 def test_input_is_list():
    
-    filename = 'results.csv'
+    filename = 'survey_app/results.csv'
     expected_output = list     
 
     output = get_input(filename)
@@ -13,7 +13,7 @@ def test_input_is_list():
 #Ticket 1 
 def test_input_is_correct():
     
-    filename = 'results.csv'
+    filename = 'survey_app/results.csv'
     expected_first_line = ['user_id','first_name','last_name','answer_1','answer_2','answer_3']
     expected_row_count = 25
 
@@ -27,7 +27,7 @@ def test_input_is_correct():
 #Ticket 2 & 3
 def test_duplicates_removed():
   
-    filename = 'results.csv'  
+    filename = 'survey_app/results.csv'  
     initial_input = get_input(filename)
     cleaned_input = get_cleaned_input(initial_input)
     expected_row_count = 20
@@ -45,7 +45,7 @@ def test_duplicates_removed():
 
 #Ticket 4
 def test_format():
-    filename = 'results.csv'
+    filename = 'survey_app/results.csv'
     initials_list = []
     output = get_formatted_input(get_cleaned_input(get_input(filename)))
 
@@ -59,7 +59,7 @@ def test_format():
 
 #Ticket 5
 def test_validate_third_answer():
-    filename = 'results.csv'
+    filename = 'survey_app/results.csv'
     output = validate_third_answer(get_formatted_input(get_cleaned_input(get_input(filename))))
    
     #Check that all answer-3 values are between 1 and 10

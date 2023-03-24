@@ -3,7 +3,7 @@ from extract import get_input, get_cleaned_input, get_formatted_input, validate_
 
 def main():
     
-    filename = 'survey_app/results.csv'
+    filename = './results.csv'
 
     input_list = get_input(filename)
     cleaned_list = get_cleaned_input(input_list)
@@ -14,5 +14,3 @@ def main():
     
       
 
-if __name__ == '__main__':
-    print(main())

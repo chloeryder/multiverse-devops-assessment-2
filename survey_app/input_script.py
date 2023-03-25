@@ -4,7 +4,7 @@ from extract import get_input, get_cleaned_input, get_formatted_input, validate_
 
 def main():
     
-    filename = 'results.csv'
+    filename = 'survey_app/results.csv'
 
     input_list = get_input(filename)
     cleaned_list = get_cleaned_input(input_list)

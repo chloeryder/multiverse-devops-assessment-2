@@ -1,4 +1,5 @@
-from survey_app.extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer
+import os.path
+from survey_app.extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer, get_output_file
 
 #Ticket 1
 def test_input_is_list():
@@ -65,3 +66,15 @@ def test_validate_third_answer():
     #Check that all answer-3 values are between 1 and 10
     for row in output[1:]:
         assert 1 <= int(row[5]) <= 10
+
+#Ticket 6
+def test_output_file_exists():
+    
+    filename = 'survey_app/results.csv'
+    output_array = validate_third_answer(get_formatted_input(get_cleaned_input(get_input(filename))))
+    get_output_file(output_array)
+
+    #Assert that clean_results.csv file exists
+    assert os.path.isfile('clean_results.csv')
+
+

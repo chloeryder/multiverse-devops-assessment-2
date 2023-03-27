@@ -13,12 +13,12 @@ def get_cleaned_input(inputarray):
     user_list = []
     output_array = []
     
-    for i in inputarray:
-        if not any(i):                   #Ignore empty lines 
+    for row in inputarray:
+        if not any(row):                   #Ignore empty lines 
             continue
-        if i[0] not in user_list:        #Ignore duplicates
-            user_list.append(i[0])
-            output_array.append(i)
+        if row[0] not in user_list:        #Ignore duplicates
+            user_list.append(row[0])
+            output_array.append(row)
     
     return output_array
 
@@ -26,7 +26,7 @@ def get_cleaned_input(inputarray):
 #Ticket 4: Capitalise user name fields
 def get_formatted_input(inputarray):
     
-    format_array = [inputarray[0]] + [[i[j][0].upper() + i[j][1:] if j in [1,2] else i[j] for j in range(len(i))] for i in inputarray[1:]]
+    format_array = [inputarray[0]] + [[row[item][0].upper() + row[item][1:] if item in [1,2] else row[item] for item in range(len(row))] for row in inputarray[1:]]
     
     return format_array
 
@@ -34,7 +34,7 @@ def get_formatted_input(inputarray):
 #Ticket 5: Validate responses to answer_3, accept only answers within range of 1 to 10
 def validate_third_answer(inputarray):
     
-    validated_array = [inputarray[0]] + [i for i in inputarray[1:] if 1 <= int(i[5]) <= 10]
+    validated_array = [inputarray[0]] + [row for row in inputarray[1:] if 1 <= int(row[5]) <= 10]
     
     return validated_array
 
@@ -53,8 +53,14 @@ def get_output_file(inputarray):
 #Ticket 7: Read in the clean_results.csv file and output the results to the command line, row by row.
 #Stretch: The printed output will be formatted with fixed length strings. 
 
-#define function to print the final output array to command line
+#define function to print the final output array to command line:
 def print_final_output(final_output):
     
+    #get max string length of entries in output array to use as fixed width for formatting.
+    max_string_length = max(len(element) for row in final_output for element in row)
+    #add a buffer 
+    fixed_string_length = max_string_length + 4
+
+    #print each line in output to command line with fixed string length
     for line in final_output:
-        print(line)
+        print ([f'{item:<{fixed_string_length}}' for item in line])

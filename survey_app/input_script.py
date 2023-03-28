@@ -1,6 +1,6 @@
 
 import sys
-from extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer, get_output_file, print_final_output
+from extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer, get_output_file
 
 def main():
     

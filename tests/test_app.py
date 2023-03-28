@@ -1,4 +1,6 @@
-from survey_app.extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer
+import os.path
+from filecmp import cmp
+from survey_app.extract import get_input, get_cleaned_input, get_formatted_input, validate_third_answer, get_output_file, print_final_output
 
 #Ticket 1
 def test_input_is_list():
@@ -65,3 +67,45 @@ def test_validate_third_answer():
     #Check that all answer-3 values are between 1 and 10
     for row in output[1:]:
         assert 1 <= int(row[5]) <= 10
+
+#Ticket 6
+def test_correct_output_file_exists():
+
+    #delete clean_results.csv file if it currently exists
+    try:
+        os.remove('clean_results.csv')
+    except OSError:
+        pass
+
+    #take results.csv file as input and generate cleaned output file 
+    filename = 'survey_app/results.csv'
+    output_array = validate_third_answer(get_formatted_input(get_cleaned_input(get_input(filename))))
+    get_output_file(output_array)
+
+    #assert that clean_results.csv file now exists
+    assert os.path.isfile('clean_results.csv') == True
+
+    #assert that content of clean_results.csv is correct by comparing to a manually produced clean version of it
+    assert cmp('clean_results.csv','survey_app/expected_clean_results.csv') == True
+
+#Ticket 7
+#How to test what is printed to command line? 
+#Test that values in expected_clean_results.csv are printed to command line by print_final_output
+#assert first_line == ['user_id       ', 'first_name    ', 'last_name     ', 'answer_1      ', 'answer_2      ', 'answer_3      ']
+    
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+

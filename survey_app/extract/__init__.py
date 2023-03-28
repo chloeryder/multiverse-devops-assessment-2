@@ -26,6 +26,7 @@ def get_cleaned_input(inputarray):
 #Ticket 4: Capitalise user name fields
 def get_formatted_input(inputarray):
     
+    #Use upper function on first letter of each name entry to retain bicapitalisation e.g. mcDonald --> McDonald
     format_array = [inputarray[0]] + [[row[item][0].upper() + row[item][1:] if item in [1,2] else row[item] for item in range(len(row))] for row in inputarray[1:]]
     
     return format_array
